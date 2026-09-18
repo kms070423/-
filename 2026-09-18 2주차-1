@@ -1,0 +1,447 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPrRzJBKxUQ1Ol3NHST/qNd",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/kms070423/-/blob/main/2026-09-18%202%EC%A3%BC%EC%B0%A8-1\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 11,
+      "metadata": {
+        "id": "vcfrEwFtFkXy"
+      },
+      "outputs": [],
+      "source": [
+        "pip install --upgrade gradio -q"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import gradio as gr\n",
+        "\n",
+        "def greet(name, intensity):\n",
+        "    return \"Hello, \" + name + \"!\" * int(intensity)\n",
+        "\n",
+        "demo = gr.Interface(\n",
+        "    fn=greet,\n",
+        "    inputs=[\"text\", \"slider\"],\n",
+        "    outputs=[\"text\"],\n",
+        "    api_name=\"predict\"\n",
+        ")\n",
+        "\n",
+        "demo.launch()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 652
+        },
+        "id": "g9qzLSOMHQiX",
+        "outputId": "7ca39261-9cee-426b-9806-414613df8e8d"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "It looks like you are running Gradio on a hosted Jupyter notebook, which requires `share=True`. Automatically setting `share=True` (you can turn this off by setting `share=False` in `launch()` explicitly).\n",
+            "\n",
+            "Colab notebook detected. To show errors in colab notebook, set debug=True in launch()\n",
+            "* Running on public URL: https://65d7f4ccd420dfbe64.gradio.live\n",
+            "\n",
+            "This share link is temporary and will last for up to 1 week (best effort). For free permanent hosting and GPU upgrades, run `gradio deploy` from the terminal in the working directory to deploy to Hugging Face Spaces (https://huggingface.co/spaces)\n"
+          ]
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "<IPython.core.display.HTML object>"
+            ],
+            "text/html": [
+              "<div><iframe src=\"https://65d7f4ccd420dfbe64.gradio.live\" width=\"100%\" height=\"500\" allow=\"autoplay; camera; microphone; clipboard-read; clipboard-write;\" frameborder=\"0\" allowfullscreen></iframe></div>"
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": []
+          },
+          "metadata": {},
+          "execution_count": 3
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "이 코드는 Gradio 라이브러리를 사용하여 간단한 웹 애플리케이션을 만듭니다. 이 애플리케이션은 사용자로부터 이름을 입력받고 'Hello' 메시지를 반환합니다.\n",
+        "\n",
+        "import gradio as gr: Gradio 라이브러리를 gr이라는 별칭으로 가져옵니다.\n",
+        "def greet(name, intensity):: greet이라는 함수를 정의합니다. 이 함수는 name과 intensity 두 개의 인수를 받습니다.\n",
+        "return \"Hello, \" + name + \"!\" * int(intensity): name에 'Hello, '를 추가하고, intensity 값만큼 '!'를 반복하여 문자열을 반환합니다. intensity는 슬라이더로 입력되기 때문에 정수로 변환됩니다.\n",
+        "demo = gr.Interface(...): Gradio 인터페이스를 생성합니다.\n",
+        "fn=greet: 인터페이스가 호출될 때 실행할 함수로 greet 함수를 지정합니다.\n",
+        "inputs=[\"text\", \"slider\"]: 사용자로부터 받을 입력 위젯을 정의합니다. 첫 번째 입력은 'text' (텍스트 상자)이고, 두 번째 입력은 'slider' (슬라이더)입니다.\n",
+        "outputs=[\"text\"]: 애플리케이션이 반환할 출력 위젯을 정의합니다. 여기서는 텍스트 출력입니다.\n",
+        "api_name=\"predict\": 인터페이스에 대한 API 엔드포인트 이름을 'predict'로 설정합니다.\n",
+        "demo.launch(): Gradio 애플리케이션을 시작하고 브라우저에서 사용할 수 있도록 합니다. Colab과 같은 호스팅된 Jupyter 노트북 환경에서는 자동으로 share=True로 설정되어 외부에서 접근 가능한 임시 URL을 생성합니다."
+      ],
+      "metadata": {
+        "id": "8H5vBe5IG5NV"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import gradio as gr\n",
+        "\n",
+        "def greet(name, intensity):\n",
+        "    return \"Hello, \" + name + \"!\" * int(intensity)"
+      ],
+      "metadata": {
+        "id": "flvvUyoLHblF"
+      },
+      "execution_count": 5,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "demo = gr.Interface(\n",
+        "    fn=greet,\n",
+        "    inputs=[\"text\", \"slider\"],\n",
+        "    outputs=[\"text\"],\n",
+        "    api_name=\"predict\"\n",
+        ")"
+      ],
+      "metadata": {
+        "id": "REUZ-nHsHgjm"
+      },
+      "execution_count": 7,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "greet"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 103
+        },
+        "id": "okH8AmkNHmdW",
+        "outputId": "711ebce7-b8ec-4662-b20f-b4520395d0aa"
+      },
+      "execution_count": 10,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "<function __main__.greet(name, intensity)>"
+            ],
+            "text/html": [
+              "<div style=\"max-width:800px; border: 1px solid var(--colab-border-color);\"><style>\n",
+              "      pre.function-repr-contents {\n",
+              "        overflow-x: auto;\n",
+              "        padding: 8px 12px;\n",
+              "        max-height: 500px;\n",
+              "      }\n",
+              "\n",
+              "      pre.function-repr-contents.function-repr-contents-collapsed {\n",
+              "        cursor: pointer;\n",
+              "        max-height: 100px;\n",
+              "      }\n",
+              "    </style>\n",
+              "    <pre style=\"white-space: initial; background:\n",
+              "         var(--colab-secondary-surface-color); padding: 8px 12px;\n",
+              "         border-bottom: 1px solid var(--colab-border-color);\"><b>greet</b><br/>def greet(name, intensity)</pre><pre class=\"function-repr-contents function-repr-contents-collapsed\" style=\"\"><a class=\"filepath\" style=\"display:none\" href=\"#\">/tmp/ipykernel_4180/3228102129.py</a>&lt;no docstring&gt;</pre></div>"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 10
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "f0J4EJkaHokf"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "%whos"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "h6B4vwCPHXXh",
+        "outputId": "ba12111f-0392-4008-a29a-c56cb5693da3"
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Variable   Type         Data/Info\n",
+            "---------------------------------\n",
+            "demo       Interface    Gradio Interface for: gre<...>object at 0x797fb3576c10>\n",
+            "gr         module       <module 'gradio' from '/u<...>ages/gradio/__init__.py'>\n",
+            "greet      function     <function greet at 0x797fb3ed8b80>\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "demo"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "_YhbKT1vHk4q",
+        "outputId": "197da32f-c393-4c32-9da2-f8664894db84"
+      },
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "Gradio Interface for: greet\n",
+              "---------------------------\n",
+              "inputs:\n",
+              "|-<gradio.components.textbox.Textbox object at 0x797fb3576990>\n",
+              "|-<gradio.components.slider.Slider object at 0x797fb3576ad0>\n",
+              "outputs:\n",
+              "|-<gradio.components.textbox.Textbox object at 0x797fb3576c10>"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 12
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "demo.launch()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 652
+        },
+        "id": "2OAZEJgsHxPE",
+        "outputId": "75608436-92de-4015-a1f2-e39973eceb87"
+      },
+      "execution_count": 13,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "It looks like you are running Gradio on a hosted Jupyter notebook, which requires `share=True`. Automatically setting `share=True` (you can turn this off by setting `share=False` in `launch()` explicitly).\n",
+            "\n",
+            "Colab notebook detected. To show errors in colab notebook, set debug=True in launch()\n",
+            "* Running on public URL: https://c3c8e045f616b9c934.gradio.live\n",
+            "\n",
+            "This share link is temporary and will last for up to 1 week (best effort). For free permanent hosting and GPU upgrades, run `gradio deploy` from the terminal in the working directory to deploy to Hugging Face Spaces (https://huggingface.co/spaces)\n"
+          ]
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "<IPython.core.display.HTML object>"
+            ],
+            "text/html": [
+              "<div><iframe src=\"https://c3c8e045f616b9c934.gradio.live\" width=\"100%\" height=\"500\" allow=\"autoplay; camera; microphone; clipboard-read; clipboard-write;\" frameborder=\"0\" allowfullscreen></iframe></div>"
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": []
+          },
+          "metadata": {},
+          "execution_count": 13
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "3d41ccf9"
+      },
+      "source": [
+        "## 온라인 송금 시스템 (Gradio)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "2d8bebd1"
+      },
+      "source": [
+        "import gradio as gr\n",
+        "\n",
+        "# 초기 계좌 잔액 설정\n",
+        "accounts = {\n",
+        "    \"사용자 A\": 100000,  # 사용자 A의 초기 잔액 10만원\n",
+        "    \"사용자 B\": 50000   # 사용자 B의 초기 잔액 5만원\n",
+        "}\n",
+        "\n",
+        "def get_balances():\n",
+        "    return f\"사용자 A 잔액: {accounts['사용자 A']}원\\n사용자 B 잔액: {accounts['사용자 B']}원\"\n",
+        "\n",
+        "def transfer_funds(sender, receiver, amount):\n",
+        "    global accounts\n",
+        "\n",
+        "    if sender == receiver:\n",
+        "        return \"송금 실패: 보내는 사람과 받는 사람이 같을 수 없습니다.\", get_balances()\n",
+        "\n",
+        "    if sender not in accounts or receiver not in accounts:\n",
+        "        return \"송금 실패: 유효하지 않은 계좌입니다.\", get_balances()\n",
+        "\n",
+        "    try:\n",
+        "        amount = int(amount)\n",
+        "    except ValueError:\n",
+        "        return \"송금 실패: 송금액은 숫자여야 합니다.\", get_balances()\n",
+        "\n",
+        "    if amount <= 0:\n",
+        "        return \"송금 실패: 송금액은 양수여야 합니다.\", get_balances()\n",
+        "\n",
+        "    if accounts[sender] < amount:\n",
+        "        return \"송금 실패: 잔액이 부족합니다.\", get_balances()\n",
+        "\n",
+        "    # 송금 처리\n",
+        "    accounts[sender] -= amount\n",
+        "    accounts[receiver] += amount\n",
+        "\n",
+        "    message = f\"{sender}님, {receiver}님에게 {amount}원이 성공적으로 송금되었습니다.\"\n",
+        "    return message, get_balances()"
+      ],
+      "execution_count": 14,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "eccd3fd1"
+      },
+      "source": [
+        "위 코드 블록에서는 송금 시스템의 핵심 로직을 정의합니다. `accounts` 딕셔너리에 두 사용자의 초기 잔액을 저장하고, `transfer_funds` 함수는 송금인, 수취인, 금액을 받아 잔액을 업데이트하고 송금 결과를 반환합니다. `get_balances` 함수는 현재 잔액 정보를 문자열로 반환합니다."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 652
+        },
+        "id": "1b184f80",
+        "outputId": "7f8dac56-815c-4259-fa50-3893fcee329e"
+      },
+      "source": [
+        "with gr.Blocks() as demo:\n",
+        "    gr.Markdown(\"# Gradio 은행 온라인 송금 시스템\")\n",
+        "\n",
+        "    with gr.Row():\n",
+        "        current_balances_output = gr.Textbox(label=\"현재 잔액\", value=get_balances(), interactive=False, lines=2)\n",
+        "\n",
+        "    with gr.Row():\n",
+        "        sender_dropdown = gr.Dropdown(list(accounts.keys()), label=\"보내는 사람\")\n",
+        "        receiver_dropdown = gr.Dropdown(list(accounts.keys()), label=\"받는 사람\")\n",
+        "\n",
+        "    amount_input = gr.Number(label=\"송금액 (원)\")\n",
+        "    transfer_button = gr.Button(\"송금하기\")\n",
+        "\n",
+        "    transfer_status_output = gr.Textbox(label=\"송금 상태\", interactive=False)\n",
+        "\n",
+        "    transfer_button.click(\n",
+        "        transfer_funds,\n",
+        "        inputs=[sender_dropdown, receiver_dropdown, amount_input],\n",
+        "        outputs=[transfer_status_output, current_balances_output]\n",
+        "    )\n",
+        "\n",
+        "demo.launch()"
+      ],
+      "execution_count": 15,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "It looks like you are running Gradio on a hosted Jupyter notebook, which requires `share=True`. Automatically setting `share=True` (you can turn this off by setting `share=False` in `launch()` explicitly).\n",
+            "\n",
+            "Colab notebook detected. To show errors in colab notebook, set debug=True in launch()\n",
+            "* Running on public URL: https://370de3ad977c0efcd8.gradio.live\n",
+            "\n",
+            "This share link is temporary and will last for up to 1 week (best effort). For free permanent hosting and GPU upgrades, run `gradio deploy` from the terminal in the working directory to deploy to Hugging Face Spaces (https://huggingface.co/spaces)\n"
+          ]
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "<IPython.core.display.HTML object>"
+            ],
+            "text/html": [
+              "<div><iframe src=\"https://370de3ad977c0efcd8.gradio.live\" width=\"100%\" height=\"500\" allow=\"autoplay; camera; microphone; clipboard-read; clipboard-write;\" frameborder=\"0\" allowfullscreen></iframe></div>"
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": []
+          },
+          "metadata": {},
+          "execution_count": 15
+        }
+      ]
+    }
+  ]
+}
